@@ -17,8 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/pagina-inicial', 'ApresentacaoController@inicial');
 
 Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::post('/cria-carta', 'CartaController@criar');
+
+Route::post('/deleta-carta', 'CartaController@deletar');
+
+Route::get('/edita-carta/{id}', 'CartaController@paineleditar');
+
+Route::post('/atualizar-carta', 'CartaController@atualizar');

@@ -13,7 +13,12 @@ class ApresentacaoController extends Controller
     }
     
     public function inicial(){
-        return view('cartas-crud.index');
+
+        $dados = [
+            'cartas' => \App\Carta::with('usuarioCadastrante')->paginate(3),
+            'categorias' => \App\Categoria::all()
+        ];
+        return view('cartas-crud.index', $dados);
     }
 
 
