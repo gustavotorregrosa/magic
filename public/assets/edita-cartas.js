@@ -20,3 +20,22 @@ function flegarCategorias(){
 
     });
 }
+
+
+$("#grupo-caracteristicas-edit .item-categoria-edit").on("click", function(){
+    listaChecked = [];
+    listaItems =$("#grupo-caracteristicas-edit .item-categoria-edit");
+
+    $(listaItems).each(function(index, item){
+        categoria = $(item).val();
+        isChecado = $(item).prop('checked');
+        if(isChecado){
+            listaChecked.push(categoria);
+        }
+
+    });
+
+    $("#lista-categorias-edit").val(listaChecked);
+
+    
+});

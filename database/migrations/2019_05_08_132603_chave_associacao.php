@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Associacao extends Migration
+class ChaveAssociacao extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class Associacao extends Migration
      */
     public function up()
     {
-        Schema::create('associacao', function (Blueprint $table) {
-            $table->bigInteger('carta_id')->unsigned();
-            $table->bigInteger('tipo_id');
-            $table->timestamps();
-            
+        Schema::table('associacao', function (Blueprint $table) {
+            $table->foreign('carta_id')->references('id')->on('carta');
         });
     }
 
@@ -28,6 +25,8 @@ class Associacao extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associacao');
+        Schema::table('associacao', function (Blueprint $table) {
+            //
+        });
     }
 }

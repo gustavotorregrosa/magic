@@ -30,6 +30,19 @@ class CartaController extends Controller
         $carta->cor = $request->input('cor-edit-carta');
         $carta->descricao = $request->input('descricao-edit-carta');
         $carta->save();
+
+        \App\Associacao::where('carta_id', $id)->delete();
+
+        if($request->input('lista-categorias-edit')){
+            $categorias = $request->input('lista-categorias-edit');
+            $categorias = explode(',', $categorias);
+            foreach($categorias as $categoria){
+                $idCategoria = str_replace('categoria-', '', $categoria);
+                $carta->categorias()->attach($idCategoria);
+            }
+        }
+
+
         return redirect('/pagina-inicial');
 
     }
